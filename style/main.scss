@@ -1,0 +1,84 @@
+@use "sass:list";
+@use "sass:math";
+
+.pres {
+  // Normal aspect ration of 11/9 multiplied by 2
+  // primarely for better setting of start, end, etc.
+  $aspect_ration_x: 22;
+  $aspect_ration_y: 18;
+
+  display: grid;
+  margin: auto;
+  aspect-ratio: list.slash(11, 9);
+  grid-template-columns: repeat($aspect_ration_x, 1fr);
+  grid-template-rows: repeat($aspect_ration_y, 1fr);
+
+  @for $i from 1 through $aspect_ration_x + 1 {
+    .col-start-#{$i} {
+      grid-column-start: $i;
+    }
+  }
+
+  @for $i from 1 through $aspect_ration_x + 1 {
+    .col-end-#{$i} {
+      grid-column-end: $i;
+    }
+  }
+
+  @for $i from 1 through $aspect_ration_y + 1 {
+    .row-start-#{$i} {
+      grid-row-start: $i;
+    }
+  }
+
+  @for $i from 1 through $aspect_ration_y + 1 {
+    .row-end-#{$i} {
+      grid-row-end: $i;
+    }
+  }
+
+  @mixin shadow($size) {
+    box-shadow: 0 ($size * 2px) ($size * 4px) 0 rgba(0, 0, 0, 0.2);
+  }
+
+  @mixin shadow-generator($selectors...) {
+    @for $i from 0 to length($selectors) {
+      #{nth($selectors, $i + 1)} {
+        @include shadow($i + 1);
+      }
+    }
+  }
+
+  @include shadow-generator(".shadow-sm", ".shadow", ".shadow-lg");
+
+  @for $i from 0 through 5 {
+    .z-#{$i*10} {
+      z-index: $i * 10;
+    }
+  }
+
+  @mixin slide {
+    grid-row-start: 2;
+    grid-row-end: $aspect_ration_y;
+    grid-column-start: 2;
+    grid-column-end: $aspect_ration_x;
+  }
+
+  .titlecard {
+    @include slide;
+  }
+
+  .two-rows {
+    @include slide;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+
+    &-row-one {
+      grid-column: 1;
+    }
+
+    .row-two {
+      grid-column: 2;
+    }
+  }
+}

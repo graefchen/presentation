@@ -10,5 +10,6 @@
 ## Compile
 
 ```nushell
-sass style\ --no-source-map --style compressed
+sass --no-source-map --style compressed src\main.scss:dist\presentation.min.css
+sass --no-source-map src\main.scss:dist\presentation.css
 ```

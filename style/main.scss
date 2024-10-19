@@ -79,7 +79,7 @@
       grid-column-end: math.div($aspect_ration_x, 2) - 1;
     }
 
-    .row-two {
+    &-row-two {
       @include slide-row();
       grid-column-start: math.div($aspect_ration_x, 2) + 1;
       grid-column-start: $aspect_ration_x + 1;

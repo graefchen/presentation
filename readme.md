@@ -1,9 +1,9 @@
 <h1 align="center">
-  presentation
+  👨‍🏫 presentation
 </h1>
 
 <p align="center">
-  <i>An experimental sass framework for making presentations in the web</i>
+  <i>An experimental scss framework for making presentations in the web</i>
 </p>
 <hr>
 
